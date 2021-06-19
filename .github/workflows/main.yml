@@ -1,0 +1,15 @@
+name: autoPull
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        proxy_key: ${{ secrets.KEY }}
+        script:  cd /var/www/ideo/ && git pull -f
