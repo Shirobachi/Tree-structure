@@ -11,5 +11,5 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        passphrase: ${{ secrets.KEY }}
+        key: ${{ secrets.KEY }}
         script:  cd /var/www/ideo/ && git pull -f
