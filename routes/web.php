@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\loginController;
 use App\Http\Controllers\registerController;
 
 /*
@@ -13,6 +14,9 @@ use App\Http\Controllers\registerController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [loginController::class, 'index']);
+Route::post('/', [loginController::class, 'logIn']);
 
 Route::get('/register', [registerController::class, 'index']);
 Route::post('/register', [registerController::class, 'signup']);
