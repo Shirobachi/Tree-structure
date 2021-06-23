@@ -35,6 +35,9 @@ class treeController extends Controller
 
         tree::create($newElement);
 
+        return redirect(url('tree'));
+    }
+
     function edit($id, $newName){
         $e = tree::findOrFail($id);
         $e -> title = $newName;
@@ -42,6 +45,18 @@ class treeController extends Controller
 
         return redirect(url('tree'));
     }
+
+    function delete($id){
+        $e = tree::findOrFail($id);
+
+        if(tree::where('parentId', $id) -> get() -> count() > 0){
+            $temp = tree::where('parentId', $id) -> get();
+
+            foreach($temp as $t)
+                self::delete($t->id);
+        }
+        $e -> delete();
+
         return redirect(url('tree'));
     }
 }

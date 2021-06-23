@@ -29,12 +29,18 @@
   var name = prompt("Please enter name");
   if (name != null)
     window.location.href = '{{url('tree')}}'+ '/' + id + '/new/' + name;
-}
+  }
 
   function _edit(id, oldName) {
   var name = prompt("Please enter new name", oldName);
   if (name != null)
     window.location.href = '{{url('tree')}}'+ '/' + id + '/edit/' + name;
+  }
+
+  function _delete(id) {
+  var sure = confirm("Are you sure?");
+  if (sure)
+    window.location.href = '{{url('tree')}}'+ '/' + id + '/delete';
   }
 
 </script>

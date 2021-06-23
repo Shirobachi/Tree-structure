@@ -19,7 +19,7 @@
             @else
             <li class="list-group-item">
                 {{$child->title}}
-                <span class="icons ps-3">
+                <span style="cursor: pointer;" class="icons ps-3">
                     <i onclick="_new({{$child->id}})" class="bi bi-file-earmark-plus"></i>
                     <i onclick='_edit({{$child->id}}, "{{$child->title}}")' class="bi bi-pencil-square"></i>
                     <i onclick='_delete({{$child->id}})' class="bi bi-file-earmark-x"></i>
