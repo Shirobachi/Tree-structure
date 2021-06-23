@@ -22,7 +22,10 @@ Route::post('/', [loginController::class, 'logIn']);
 Route::get('/register', [registerController::class, 'index']);
 Route::post('/register', [registerController::class, 'signup']);
 
-Route::get('/tree', [treeController::class, 'show']);
+
+Route::prefix('/tree')->group(function () {
+    Route::get('/', [treeController::class, 'show']);
+});
 
 Route::get('/logout', function () {
     session()->forget('userID');
