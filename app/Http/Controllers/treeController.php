@@ -11,8 +11,17 @@ use App\Models\tree;
 class treeController extends Controller
 {
     function show(){
-        $tree = tree::whereNull('parentId') -> get();
+        if(session()->has('userID')){
+            $tree = tree::whereNull('parentId') -> get();
 
-        return view('tree', compact('tree'));
+            return view('tree', compact('tree'));
+        }
+        else{
+            $info['title'] = 'Login requered!';
+            $info['desc'] = 'You need to be loged in to see that page!';
+            $info['type'] = 'danger';
+
+            return view('login', compact('info'));
+        }
     }
 }
