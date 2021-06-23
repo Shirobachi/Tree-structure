@@ -11,7 +11,7 @@ class registerController extends Controller
 {
     function index(){
         if(session()->has('userID'))
-            return redirect(url('loggedIn'));
+            return redirect(url('tree'));
         else
             return view('register');
     }

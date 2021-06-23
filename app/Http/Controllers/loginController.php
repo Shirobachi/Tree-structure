@@ -12,7 +12,7 @@ class loginController extends Controller
 
     function index(){
         if(session()->has('userID'))
-            return redirect(url('loggedIn'));
+            return redirect(url('tree'));
         else
             return view('login');
     }
@@ -22,7 +22,7 @@ class loginController extends Controller
 
         if($user && Hash::check($r->password, $user->password)){
             session()->put('userID', $user->id);
-            return session()->get('userID');
+            return redirect(url('tree'));
         }
         else{
             $info['type'] = 'danger';
