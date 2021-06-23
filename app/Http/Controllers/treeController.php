@@ -12,7 +12,7 @@ class treeController extends Controller
 {
     function show(){
         if(session()->has('userID')){
-            $tree = tree::whereNull('parentId') -> get();
+            $tree = tree::whereNull('parentId') -> where('owner', session()->get('userID')) -> get();
 
             return view('tree', compact('tree'));
         }
