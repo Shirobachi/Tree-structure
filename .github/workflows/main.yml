@@ -12,4 +12,4 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        script:  cd /var/www/ideo/ && git pull -f
+        script:  cd /var/www/ideo/ && php artisan migrate && git pull -f
