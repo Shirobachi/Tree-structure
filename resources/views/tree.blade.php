@@ -31,6 +31,12 @@
     window.location.href = '{{url('tree')}}'+ '/' + id + '/new/' + name;
 }
 
+  function _edit(id, oldName) {
+  var name = prompt("Please enter new name", oldName);
+  if (name != null)
+    window.location.href = '{{url('tree')}}'+ '/' + id + '/edit/' + name;
+  }
+
 </script>
 
 @endsection

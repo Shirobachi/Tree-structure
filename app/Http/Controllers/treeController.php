@@ -35,6 +35,13 @@ class treeController extends Controller
 
         tree::create($newElement);
 
+    function edit($id, $newName){
+        $e = tree::findOrFail($id);
+        $e -> title = $newName;
+        $e -> save();
+
+        return redirect(url('tree'));
+    }
         return redirect(url('tree'));
     }
 }
