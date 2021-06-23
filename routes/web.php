@@ -25,6 +25,7 @@ Route::post('/register', [registerController::class, 'signup']);
 
 Route::prefix('/tree')->group(function () {
     Route::get('/', [treeController::class, 'show']);
+    Route::get('{parentId}/new/{name}', [treeController::class, 'new']);
 });
 
 Route::get('/logout', function () {

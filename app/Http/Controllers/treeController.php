@@ -24,4 +24,17 @@ class treeController extends Controller
             return view('login', compact('info'));
         }
     }
+
+    function new($parentId, $name){
+        $newElement = [
+            'parentId' => $parentId,
+            'owner'    => session()->get('userID'),
+            'sort'     => 1,
+            'title'    => $name
+        ];
+
+        tree::create($newElement);
+
+        return redirect(url('tree'));
+    }
 }

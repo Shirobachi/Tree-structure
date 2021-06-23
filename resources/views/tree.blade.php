@@ -23,7 +23,14 @@
         $('.collapse').collapse('hide');
       
     show = !show;
-});
+  });
+
+  function _new(id) {
+  var name = prompt("Please enter name");
+  if (name != null)
+    window.location.href = '{{url('tree')}}'+ '/' + id + '/new/' + name;
+}
+
 </script>
 
 @endsection
