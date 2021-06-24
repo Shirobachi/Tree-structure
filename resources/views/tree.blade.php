@@ -6,6 +6,13 @@
 
 <div class="row">
     <div class="col-10 offset-1 col-md-6 offset-md-3 mt-5">
+
+      @if($info ?? '')
+        <div class="alert alert-{{$info['type'] ?? 'success'}} alert-dismissible fade show" role="alert">
+          <strong>{{$info['title'] ?? ''}}</strong> {{$info['desc'] ?? ''}}
+        </div>
+      @endif
+
       @if(App\Models\tree::where('owner', $tree[0]->owner) -> get() -> count() > 1)
         <button id="toggleAll" class="btn btn-info mb-2 input-block-level form-control" type="button">Show all</button>
       @endif

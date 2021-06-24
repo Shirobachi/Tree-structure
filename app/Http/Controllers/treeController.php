@@ -119,10 +119,21 @@ class treeController extends Controller
     }
 
     function processMove(request $r){
-        $temp = tree::findOrFail($r->id);
-        $temp -> parentId = $r -> newParent;
-        $temp -> save();
-        
-        return redirect(url('tree'));
+        if(self::checkMove(tree::findOrFail($r->newParent), $r->id)){
+            $temp = tree::findOrFail($r->id);
+            $temp -> parentId = $r -> newParent;
+            $temp -> save();
+
+            return redirect(url('tree'));
+        }
+        else{
+            $tree = tree::whereNull('parentId') -> where('owner', session()->get('userID')) -> get();
+
+            $info['type'] = 'danger';
+            $info['title'] = 'Invalid parent!';
+            $info['desc'] = 'You cannot move ' . tree::findOrFail($r->id)->title . ' there!';
+
+            return view('tree', compact('tree', 'info'));
+        }
     }
 }
