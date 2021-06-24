@@ -14,7 +14,7 @@
                 <input type="text" disabled class="form-control mb-3" value="{{$e->title}}">
                 <select class="btn-block custom-select form-select" name="newParent">
                 @foreach($allElements as $E)
-                    @if ($E->id == $e->parentId)
+                    @if ($E->id == $e->id)
                         <option selected value="{{$E->id}}">{{$E->title}}</option>
                     @else
                         <option value="{{$E->id}}">{{$E->title}}</option>

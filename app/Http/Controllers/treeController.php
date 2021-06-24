@@ -95,14 +95,26 @@ class treeController extends Controller
         else
             return self::_move(tree::findOrFail($o->parentId)) . '/' . $o->title;
     }
+    
+    function checkMove($o, $id){
+        if($o->parentId == null)
+            return true;
+        else if($o -> parentId == $id)
+            return false;
+        else
+            return self::checkMove(tree::findOrFail($o->parentId), $id);
+    }
 
     function move($id){
         $e = tree::findOrFail($id);
 
         $allElements = tree::where('owner', $e->owner) -> get();
-        foreach($allElements as $E)
-            $E -> title = self::_move($E);
-
+        foreach($allElements as $key => $value)
+            if(self::checkMove($value, $id))
+                $value -> title = self::_move($value);
+            else
+                unset($allElements[$key]);
+                
         return view('move', compact('e', 'allElements'));
     }
 
