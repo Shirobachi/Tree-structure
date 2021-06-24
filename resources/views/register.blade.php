@@ -12,7 +12,7 @@
                 <input required name="e-mail" type="email" placeholder="E-mail" class="form-control mb-3">
                 <input required name="password" type="password" placeholder="Password" class="form-control mb-3">
                 <input required name="password2" type="password" placeholder="Re-type password" class="form-control mb-3">
-                <button type="submit" class="btn btn-primary">Register!</button>
+                <button type="submit" class="btn btn-primary input-block-level form-control">Register!</button>
                 <a class="link-success" href="{{url('/')}}">Login now!</a>
             </form>
         </div>
