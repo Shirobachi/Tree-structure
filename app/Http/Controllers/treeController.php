@@ -26,10 +26,15 @@ class treeController extends Controller
     }
 
     function new($parentId, $name){
+        if(tree::where('parentId', $parentId) -> orderBy('sort', 'desc') -> count())
+            $temp = tree::where('parentId', $parentId) -> orderBy('sort', 'desc') -> first() -> sort +1;
+        else
+            $temp = 1;
+
         $newElement = [
             'parentId' => $parentId,
             'owner'    => session()->get('userID'),
-            'sort'     => 1,
+            'sort'     => $temp,
             'title'    => $name
         ];
 
