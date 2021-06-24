@@ -153,6 +153,13 @@ class treeController extends Controller
     function processMove(request $r){
         if(self::checkMove(tree::findOrFail($r->newParent), $r->id)){
             $temp = tree::findOrFail($r->id);
+
+            if(tree::where('parentId', $r -> newParent) -> orderBy('sort', 'desc') -> count())
+                $t = tree::where('parentId', $r -> newParent) -> orderBy('sort', 'desc') -> first() -> sort +1;
+            else
+                $t = 1;
+
+            $temp -> sort = $t;
             $temp -> parentId = $r -> newParent;
             $temp -> save();
 
