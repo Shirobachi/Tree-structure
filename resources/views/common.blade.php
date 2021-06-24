@@ -26,7 +26,7 @@
 
     @if(session()->has('userID'))
       <a href="{{url('/logout')}}">
-        <i style="position: fixed; right: 35px; top: 35px;" class="text-success border border-success border-2 px-2 py-1 rounded h1 bi bi-box-arrow-right"></i>
+        <i style="position: fixed; left: 35px; top: 35px;" class="text-success border border-success border-2 px-2 py-1 rounded h1 bi bi-box-arrow-right" data-bs-toggle="tooltip" data-bs-placement="right" title="Log out!"></i>
       </a>
   @endif
 
