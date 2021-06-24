@@ -26,6 +26,16 @@ class treeController extends Controller
     }
 
     function new($parentId, $name){
+        if(tree::where('parentId', $parentId) -> where('title', $name) -> get() -> count()){
+            $tree = tree::whereNull('parentId') -> where('owner', session()->get('userID')) -> get();
+
+            $info['type'] = 'warning';
+            $info['title'] = 'This name is alredy used!';
+            $info['desc'] = 'You can use same name only once in the same parent!';
+
+            return view('tree', compact('tree', 'info'));
+        }
+
         if(tree::where('parentId', $parentId) -> orderBy('sort', 'desc') -> count())
             $temp = tree::where('parentId', $parentId) -> orderBy('sort', 'desc') -> first() -> sort +1;
         else
@@ -45,6 +55,18 @@ class treeController extends Controller
 
     function edit($id, $newName){
         $e = tree::findOrFail($id);
+
+        $o = tree::where('parentId', $e->parentId) -> where('title', $newName) -> first();
+        if($o && $o->id != $id){
+            $tree = tree::whereNull('parentId') -> where('owner', session()->get('userID')) -> get();
+
+            $info['type'] = 'warning';
+            $info['title'] = 'This name is alredy used!';
+            $info['desc'] = 'You can use same name only once in the same parent!';
+
+            return view('tree', compact('tree', 'info'));
+        }
+
         $e -> title = $newName;
         $e -> save();
 
