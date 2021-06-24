@@ -28,6 +28,10 @@ Route::prefix('/tree')->group(function () {
     Route::get('{parentId}/new/{name}', [treeController::class, 'new']);
     Route::get('{id}/edit/{newName}', [treeController::class, 'edit']);
     Route::get('{id}/delete', [treeController::class, 'delete']);
+    Route::prefix('/{id}/sort')->group(function () {
+        Route::get('up', [treeController::class, 'sortUp']);
+        Route::get('down', [treeController::class, 'sortDown']);
+    });
 });
 
 Route::get('/logout', function () {

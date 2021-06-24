@@ -13,6 +13,6 @@ class tree extends Model
     protected $fillable = [ 'parentId', 'owner', 'sort', 'title' ];
     
     public function childs() {
-        return $this->hasMany('App\Models\tree','parentId','id') ;
+        return $this->hasMany('App\Models\tree','parentId','id') -> orderBy('sort') ;
     }
 }

@@ -33,7 +33,7 @@ class registerController extends Controller
         $root = [
             'parentId' => NULL,
             'owner'    => user::where('login', $r->login) -> first() -> id,
-            'sort'     => 1,
+            'sort'     => user::all() -> count(),
             'title'    => $r -> login
         ];
     

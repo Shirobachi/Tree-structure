@@ -64,4 +64,28 @@ class treeController extends Controller
 
         return redirect(url('tree'));
     }
+
+    function sortUp($id){
+        return self::sort($id,'<', 'desc');
+    }
+    
+    function sortDown($id){
+        return self::sort($id,'>', 'asc');
+    }
+
+    //oa - operator aritmetic ('>'/'<'); st - sort type (asc/desc)
+    function sort($id, $oa, $st){
+        $about = tree::findOrFail($id);
+
+        $temp = $about -> sort;
+        $otherID = tree::where('parentId', $about->parentId) -> where('sort', $oa, $temp) -> orderBy('sort', $st) -> first() -> id;
+        $otherObject = tree::findOrFail($otherID);
+        $about -> sort = $otherObject -> sort;
+        $otherObject -> sort = $temp;
+
+        $about -> save();
+        $otherObject -> save();
+
+        return redirect(url('tree'));
+    }
 }
