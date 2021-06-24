@@ -131,7 +131,7 @@ class treeController extends Controller
     function checkMove($o, $id){
         if($o->parentId == null)
             return true;
-        else if($o -> parentId == $id)
+        else if($o -> parentId == $id || $o -> id == $id)
             return false;
         else
             return self::checkMove(tree::findOrFail($o->parentId), $id);
