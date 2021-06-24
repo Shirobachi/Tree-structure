@@ -17,8 +17,8 @@
 
             <form method="POST" action="{{url('/')}}">
                 @csrf
-                <input name="login" type="text" placeholder="Login" class="form-control mb-3">
-                <input name="password" type="password" placeholder="password" class="form-control mb-3">
+                <input required name="login" type="text" placeholder="Login" class="form-control mb-3">
+                <input required name="password" type="password" placeholder="password" class="form-control mb-3">
                 <button type="submit" class="btn btn-primary">Log in!</button>
                 <a class="link-success" href="{{url('register')}}">Register now!</a>
             </form>
