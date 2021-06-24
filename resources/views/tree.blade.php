@@ -6,7 +6,9 @@
 
 <div class="row">
     <div class="col-10 offset-1 col-md-6 offset-md-3 mt-5">
-      <button id="toggleAll" class="btn btn-info mb-2 input-block-level form-control" type="button">Toggle all</button>
+      @if(App\Models\tree::where('owner', $tree[0]->owner) -> get() -> count() > 1)
+        <button id="toggleAll" class="btn btn-info mb-2 input-block-level form-control" type="button">Toggle all</button>
+      @endif
       <div class="accordion">
         @include('child',['childs' => $tree])
     </div>
