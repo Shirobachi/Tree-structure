@@ -20,7 +20,7 @@ class registerController extends Controller
         $r -> validate([
             'login' => "min:3|max:15|required|unique:users",
             'e-mail' => "email:rfc,dns|unique:users",
-            'password'  => 'min:3|max:50',
+            'password'  => 'min:6|max:50',
             'password2' => 'same:password'
         ]);
 
