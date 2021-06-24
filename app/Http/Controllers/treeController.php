@@ -77,6 +77,16 @@ class treeController extends Controller
     function sort($id, $oa, $st){
         $about = tree::findOrFail($id);
 
+        if(tree::where('parentId', $about->parentId) -> orderBy('sort', $st == 'desc' ? 'asc' : 'desc') -> first() -> id == $id){
+            $tree = tree::whereNull('parentId') -> where('owner', session()->get('userID')) -> get();
+            
+            $info['type'] = 'danger';
+            $info['title'] = 'Requered forbidden!';
+            $info['desc'] = 'You cannot move ' . ($oa == '>' ? 'last' : 'first') . ' element ' . ($oa == '>' ? ' below!' : 'over!');
+        
+            return view('tree', compact('tree', 'info'));
+        }
+
         $temp = $about -> sort;
         $otherID = tree::where('parentId', $about->parentId) -> where('sort', $oa, $temp) -> orderBy('sort', $st) -> first() -> id;
         $otherObject = tree::findOrFail($otherID);
