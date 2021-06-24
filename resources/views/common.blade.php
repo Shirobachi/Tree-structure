@@ -29,5 +29,13 @@
         <i style="position: fixed; right: 35px; top: 35px;" class="text-success border border-success border-2 px-2 py-1 rounded h1 bi bi-box-arrow-right"></i>
       </a>
   @endif
+
+  <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  </script>
+  
   </body>
 </html>
