@@ -28,6 +28,7 @@
                     <a href="{{url('tree')}}/{{$child->id}}/sort/up"><i class="bi bi-arrow-up-square text-primary"  data-bs-toggle="tooltip" title="Move up 👆" ></i></a>
                 @endif
             @endif
+            <a href="{{url('tree')}}/{{$child->id}}/move"><i class="bi bi-box-arrow-up-right text-info"  data-bs-toggle="tooltip" title="Move somewhere else.."></i></a>
 
             @if($parent)
                 </div>

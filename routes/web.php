@@ -32,6 +32,8 @@ Route::prefix('/tree')->group(function () {
         Route::get('up', [treeController::class, 'sortUp']);
         Route::get('down', [treeController::class, 'sortDown']);
     });
+    Route::get('{id}/move', [treeController::class, 'move']);
+    Route::post('move', [treeController::class, 'processMove']);
 });
 
 Route::get('/logout', function () {

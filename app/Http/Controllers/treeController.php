@@ -88,4 +88,29 @@ class treeController extends Controller
 
         return redirect(url('tree'));
     }
+
+    function _move($o){
+        if($o -> parentId == null)
+            return $o->title;
+        else
+            return self::_move(tree::findOrFail($o->parentId)) . '/' . $o->title;
+    }
+
+    function move($id){
+        $e = tree::findOrFail($id);
+
+        $allElements = tree::where('owner', $e->owner) -> get();
+        foreach($allElements as $E)
+            $E -> title = self::_move($E);
+
+        return view('move', compact('e', 'allElements'));
+    }
+
+    function processMove(request $r){
+        $temp = tree::findOrFail($r->id);
+        $temp -> parentId = $r -> newParent;
+        $temp -> save();
+        
+        return redirect(url('tree'));
+    }
 }
