@@ -40,13 +40,13 @@
 
   function _new(id) {
   var name = prompt("Please enter name");
-  if (name != null)
+  if (name != null && name != "")
     window.location.href = '{{url('tree')}}'+ '/' + id + '/new/' + name;
   }
 
   function _edit(id, oldName) {
   var name = prompt("Please enter new name", oldName);
-  if (name != null)
+  if (name != null && name != "")
     window.location.href = '{{url('tree')}}'+ '/' + id + '/edit/' + name;
   }
 
